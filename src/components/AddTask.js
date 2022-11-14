@@ -11,7 +11,7 @@ const AddTask = () => {
     e.preventDefault()
 
     if(!day || !sch1){
-      alert('Please fill schedule first')
+      alert('Please fill schedule first ')
       return
     }
 
