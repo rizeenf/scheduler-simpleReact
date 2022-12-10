@@ -1,24 +1,25 @@
 import { useState } from "react"
-import Button from "./Button"
+import PropTypes from 'prop-types'
 
-const AddTask = () => {
+
+const AddTask = ({ onAdd }) => {
   const [day, setDay] = useState('')
-  const [sch1, setSch1] = useState('')
-  const [sch2, setSch2] = useState('')
-  const [sch3, setSch3] = useState('')
+  const [classes, setClasses] = useState('')
+  const [prac, setPract] = useState(false)
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if(!day || !sch1){
+    if(!day || !classes){
       alert('Please fill schedule first ')
       return
     }
 
-    setDay('')
-    setSch1('')
-    setSch2('')
-    setSch3('')
+    onAdd({day, classes, prac });
+
+    setDay('');
+    setClasses('');
+    setPract(false);
   }
 
   return (
@@ -29,16 +30,24 @@ const AddTask = () => {
           <input className="form-control" type="text" value={day} placeholder="Add Day" onChange={(e) => { setDay(e.target.value)}} />
         </div>
         <div className="mb-3">
-          <Button text={'Add'} classBtn={'btn-secondary btn-sm d-inline float-end mb-1'} />
           <label>Schedule</label>
-          <input className="form-control mb-1" type="text" value={sch1} placeholder="Add Schedule" onChange={(e) => { setSch1(e.target.value)}} />
-          <input className="form-control mb-1" type="text" value={sch2} placeholder="Add Schedule" onChange={(e) => { setSch2(e.target.value)}} />
-          <input className="form-control mb-1" type="text" value={sch3} placeholder="Add Schedule" onChange={(e) => { setSch3(e.target.value)}} />
+          <input className="form-control mb-1" type="text" value={classes} placeholder="Add Schedule" onChange={(e) => { setClasses(e.target.value)}} />
+
+          <div className="d-flex justify-content-end">
+            <label>Practice </label>
+            <input className="mx-2" type="checkbox" value={prac} onChange={ e => setPract(e.currentTarget.checked)} checked={prac} />
+          </div>
         </div>
-        <input className="form-control btn btn-secondary" type="submit" value="Save Schedule"  />
+        <input className="form-control btn btn-secondary mb-5" type="submit" value="Save Schedule"  />
       </form>
     </div>
   )
+}
+
+AddTask.propTypes ={
+  day : PropTypes.string,
+  classes : PropTypes.string,
+  prac : PropTypes.bool,
 }
 
 export default AddTask
