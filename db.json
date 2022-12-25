@@ -1,16 +1,3 @@
 {
-  "schedule": [
-    {
-      "day": "Senin",
-      "classes": "Belajar",
-      "prac": false,
-      "id": 1
-    },
-    {
-      "day": "Selasa",
-      "classes": "Tidur",
-      "prac": false,
-      "id": 2
-    }
-  ]
+  "schedule": []
 }
